@@ -1,0 +1,41 @@
+---
+version: 1
+disable_existing_loggers: False
+formatters:
+    simple:
+        format: "%(message)s"
+
+filters:
+    stderr_filter:
+      (): app.utils.logger_wrapper.StdErrFilter
+    stdout_filter:
+      (): app.utils.logger_wrapper.StdOutFilter
+
+handlers:
+    stdout:
+        class: logging.StreamHandler
+        level: DEBUG
+        formatter: simple
+        filters: [stdout_filter]
+        stream: ext://sys.stdout
+
+    stderr:
+        class: logging.StreamHandler
+        level: ERROR
+        formatter: simple
+        filters: [stderr_filter]
+        stream: ext://sys.stderr
+
+loggers:
+  app.resources:
+    level: DEBUG
+    handlers: [stdout, stderr]
+    propagate: no
+
+  werkzeug:
+    level: WARN
+    propogate: no
+
+root:
+    level: INFO
+    handlers: [stdout, stderr]
