@@ -48,7 +48,8 @@ pip install -r requirements.txt
 
 Python web applications are typically run by a WSGI server. These web servers can be very simple or feature rich and more complex for production use. This project includes both. Because WSGI essentially "plugs in" directly to your code, you don't have to change anything to run them on different servers.
 
-For *development* use the built in Flask WSGI server (werkzeug) by simply running the app directly:
+### Development
+For development use the built in Flask WSGI server (werkzeug) by simply running the app directly:
 
 ```
 python run.py
@@ -59,7 +60,9 @@ Or debug mode:
 APP_DEBUG=true python run.py
 ```
 
-For *production* use we want a more flexible, scalable server to run our code. [Gunicorn](http://gunicorn.org/) is a popular one. This is included already in your `requirements.txt` so you just have to launch it via command line to test "production like" behavior. Feel free to read docs and change options to fit your use case.
+### Production / Deployment
+
+For production use we want a more flexible, scalable server to run our code. [Gunicorn](http://gunicorn.org/) is a popular one. This is included already in your `requirements.txt` so you just have to launch it via command line to test "production like" behavior. Feel free to read docs and change options to fit your use case.
 
 Here's a basic command to launch the gunicorn server in a similar state to the development configuration. Notice it points to the `app` object in your `app.app` module.
 
