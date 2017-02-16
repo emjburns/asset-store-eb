@@ -90,3 +90,9 @@ We use standard python logging and `structlog` package to get good structured lo
 
 ### Structlog
 All this does is create nice, key-value or JSON output and provide a user friendly logging interface for you to drop complex data in. There is an example in `healthcheck.py` resource for reference.
+
+## Swagger
+
+The `flask-restful-swagger` package was added to aid in providing automatic API documentation for services. *This plugin is experimental in this case* and just an illustration of how swagger can be used to aid in documentation of services. It may be replaced by a different swagger implementation or something else altogether in the future.
+
+Currently `healthcheck.py` has an example annotation for the endpoint. When the app runs http://localhost:5000/api/spec.json provides the Swagger spec and http://localhost:5000/api/spec.html provides an html documentation view.
