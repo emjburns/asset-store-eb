@@ -88,5 +88,5 @@ We use standard python logging and `structlog` package to get good structured lo
 
 `ERROR` and `CRITICAL` levels are printed to stderr, everything else is printed to stdout. On your console you won't see a difference, this is primarily for sophisticated log streaming in production.
 
-## Structlog
+### Structlog
 All this does is create nice, key-value or JSON output and provide a user friendly logging interface for you to drop complex data in. There is an example in `healthcheck.py` resource for reference.
