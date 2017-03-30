@@ -28,7 +28,7 @@ handlers:
 
 loggers:
   app.resources:
-    level: DEBUG
+    level: INFO
     handlers: [stdout, stderr]
     propagate: no
 
