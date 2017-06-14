@@ -1,31 +1,50 @@
-# flask-good-start
-A starter for Restful python APIs using Flask-Restful, Swagger, Structlog, and vanilla unittest framework.
-
-Clone and copy this repo as a "good start" for restful Python APIs. Change whatever is necessary
-for your application.
-
-## Layout
+## Running
 
 ```
-.
-├── LICENSE
-├── README.md
-├── app
-│   ├── __init__.py
-│   ├── app.py
-│   ├── resources
-│   │   ├── __init__.py
-│   │   └── healthcheck.py
-│   ├── tests
-│   │   ├── __init__.py
-│   │   └── test_healthcheck.py
-│   └── utils
-│       ├── __init__.py
-│       ├── logger_wrapper.py
-│       └── logging.yaml
-├── requirements.txt
-└── run.py
+pip install -r requirements.txt
+python run.py
 ```
+Or debug mode:
+
+```
+APP_DEBUG=true python run.py
+```
+
+## Assumptions
+- No database, this will store in memory. This won't scale, but is a start.
+
+
+## REST
+While running, please visit `http://localhost:5000/api/spec.html` to test out using Swagger.
+
+## Structure
+```
+Asset {
+  name: string
+    - alphanumeric ascii characters, underscores, and dashes
+    - globally unique
+    - cannot start with underscore or dashe
+    - 4-64 chars log
+  type: string
+    - "satellite" or "antenna"
+  class: string, depends on type
+    - "satellite" assets - "dove" or "rapideye"
+    - "antenna" assets - "dish" or "yagi"
+}
+```
+
+APIS:
+- POST /v1/asset
+  body: name, type, class
+- GET /v1/asset
+  get whole list of assets
+- GET/v1/asset/{name}
+  get details about asset
+
+## Adapted from
+Adapted from [flask-good-start](https://github.com/Cogniteinc/flask-good-start)
+
+
 
 All application code including tests, endpoints, response models, and routes are
 contained in the `app` directory. `app.py` is solely for defining the services
@@ -40,25 +59,6 @@ for more.
 
 Feel free to create other directories for things you need like [dao](https://en.wikipedia.org/wiki/Data_access_object_) or [models](http://flask-sqlalchemy.pocoo.org/2.1/models/).
 
-## Running
-
-```
-pip install -r requirements.txt
-```
-
-Python web applications are typically run by a WSGI server. These web servers can be very simple or feature rich and more complex for production use. This project includes both. Because WSGI essentially "plugs in" directly to your code, you don't have to change anything to run them on different servers.
-
-### Development
-For development use the built in Flask WSGI server (werkzeug) by simply running the app directly:
-
-```
-python run.py
-```
-Or debug mode:
-
-```
-APP_DEBUG=true python run.py
-```
 
 ### Production / Deployment
 
